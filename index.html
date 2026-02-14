@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda - Rigoberto & Alondra</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-rings">&#128141;</div>
+            <p class="splash-subtitle">Estás invitado(a) a nuestra boda</p>
+            <h1 class="splash-names">Rigoberto <span>&</span> Alondra</h1>
+            <div class="splash-divider"></div>
+            <p class="splash-date">30 de Mayo de 2026</p>
+            <button class="splash-btn" id="openInvitation">
+                <span>Abrir Invitación</span>
+            </button>
+            <p class="splash-hint">Toca para abrir</p>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="particles" id="particles"></div>
+        <div class="sparkle-container" id="sparkleContainer"></div>
+
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <div class="hero-overlay"></div>
+            <div class="floating-elements" id="floatingElements"></div>
+            <div class="hero-content anime-fade-in">
+                <p class="hero-pre">Nuestra Boda</p>
+                <h1 class="hero-names">
+                    <span class="name-groom">Rigoberto</span>
+                    <span class="name-amp">&</span>
+                    <span class="name-bride">Alondra</span>
+                </h1>
+                <div class="hero-divider"></div>
+                <p class="hero-date">30 de Mayo de 2026</p>
+                <p class="hero-location">León, Guanajuato</p>
+                <div class="scroll-indicator anime-bounce"><span>&#9660;</span></div>
+            </div>
+        </section>
+
+        <!-- Invitation Text -->
+        <section class="section invite-section" id="invitation">
+            <div class="anime-reveal">
+                <div class="ornament-line"></div>
+                <p class="invite-text">Con la bendición de Dios y la alegría de nuestras familias, tenemos el honor de invitarte a celebrar nuestra unión en matrimonio.</p>
+                <div class="ornament-line"></div>
+            </div>
+        </section>
+
+        <!-- Parents -->
+        <section class="section parents-section" id="parents">
+            <div class="anime-reveal">
+                <h2 class="section-title">Nuestros Padres</h2>
+                <div class="parents-grid">
+                    <div class="parent-card">
+                        <h3 class="parent-label">Padres del Novio</h3>
+                        <p class="parent-name">Rigoberto Romero Rodríguez</p>
+                        <p class="parent-amp">&</p>
+                        <p class="parent-name">Eva Elizabeth Romo Ramírez</p>
+                    </div>
+                    <div class="parent-card">
+                        <h3 class="parent-label">Padres de la Novia</h3>
+                        <p class="parent-name">José David Dávila García</p>
+                        <p class="parent-amp">&</p>
+                        <p class="parent-name">María Ancelina Frausto López</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown -->
+        <section class="section countdown-section" id="countdown">
+            <h2 class="section-title anime-reveal">Faltan</h2>
+            <div class="countdown" id="countdown-timer">
+                <div class="countdown-item anime-pop" style="--delay:0.1s">
+                    <span class="countdown-number" id="days">000</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-item anime-pop" style="--delay:0.2s">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item anime-pop" style="--delay:0.3s">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item anime-pop" style="--delay:0.4s">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ceremony -->
+        <section class="section" id="ceremony">
+            <div class="event-card anime-reveal">
+                <div class="card-glow"></div>
+                <div class="event-icon">&#9962;</div>
+                <h2 class="section-title">Ceremonia Religiosa</h2>
+                <div class="event-details">
+                    <p class="event-venue">Templo Expiatorio</p>
+                    <p class="event-location">León, Guanajuato</p>
+                    <div class="event-time-badge"><span class="time">1:00 PM</span></div>
+                    <p class="event-date-detail">30 de Mayo de 2026</p>
+                </div>
+                <a href="https://maps.google.com/maps?q=Templo+Expiatorio+Leon+Guanajuato" target="_blank" class="btn-map">Ver Ubicación</a>
+            </div>
+        </section>
+
+        <!-- Reception -->
+        <section class="section" id="reception">
+            <div class="event-card anime-reveal">
+                <div class="card-glow"></div>
+                <div class="event-icon">&#127878;</div>
+                <h2 class="section-title">Recepción</h2>
+                <div class="event-details">
+                    <p class="event-venue">Privada Atenco 104</p>
+                    <p class="event-location">Col. Cortijos de la Gloria, León, Gto.</p>
+                    <div class="event-time-badge"><span class="time">Después de la misa</span></div>
+                </div>
+                <a href="https://maps.google.com/maps?q=Privada+Atenco+104+Cortijos+de+la+Gloria+Leon+Guanajuato" target="_blank" class="btn-map">Ver Ubicación</a>
+            </div>
+        </section>
+
+        <!-- Padrinos -->
+        <section class="section padrinos-section" id="padrinos">
+            <div class="anime-reveal">
+                <h2 class="section-title">Padrinos</h2>
+                <div class="padrinos-grid">
+                    <div class="padrino-card">
+                        <h4 class="padrino-role">Velación</h4>
+                        <p>Diana Ramírez & Carlos López</p>
+                    </div>
+                    <div class="padrino-card">
+                        <h4 class="padrino-role">Lazo</h4>
+                        <p>Ángela Hernández & Osvaldo Villa</p>
+                    </div>
+                    <div class="padrino-card">
+                        <h4 class="padrino-role">Anillos</h4>
+                        <p>Fernando Dávila</p>
+                    </div>
+                    <div class="padrino-card">
+                        <h4 class="padrino-role">Arras</h4>
+                        <p>Janet Padilla & Miguel Rodríguez</p>
+                    </div>
+                    <div class="padrino-card">
+                        <h4 class="padrino-role">Biblia y Rosario</h4>
+                        <p>Cecilia Romo</p>
+                    </div>
+                    <div class="padrino-card">
+                        <h4 class="padrino-role">Cristo</h4>
+                        <p>Marisol Romo</p>
+                    </div>
+                    <div class="padrino-card">
+                        <h4 class="padrino-role">Cirio</h4>
+                        <p>Esperanza Ramírez</p>
+                    </div>
+                    <div class="padrino-card">
+                        <h4 class="padrino-role">Cojines</h4>
+                        <p>Edith Ramos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dress Code -->
+        <section class="section dresscode-section" id="dresscode">
+            <div class="anime-reveal">
+                <h2 class="section-title">Código de Vestimenta</h2>
+                <p class="dresscode-text">Formal / Elegante</p>
+            </div>
+        </section>
+
+        <!-- RSVP -->
+        <section class="section rsvp-section" id="rsvp">
+            <div class="anime-reveal">
+                <h2 class="section-title">Confirma tu Asistencia</h2>
+                <p class="rsvp-subtitle">Tu presencia hará este día aún más especial</p>
+                <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-group">
+                        <label for="guestName">Nombre completo</label>
+                        <input type="text" id="guestName" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numGuests">Número de invitados</label>
+                        <select id="numGuests" required>
+                            <option value="">Selecciona</option>
+                            <option value="1">1 persona</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendance">¿Asistirás?</label>
+                        <select id="attendance" required>
+                            <option value="">Selecciona</option>
+                            <option value="si">Sí, confirmo mi asistencia</option>
+                            <option value="no">No podré asistir</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje para los novios (opcional)</label>
+                        <textarea id="message" placeholder="Escribe un mensaje..." rows="3"></textarea>
+                    </div>
+                    <p class="rsvp-contact-label">Enviar confirmación a:</p>
+                    <div class="rsvp-buttons">
+                        <button type="button" class="btn-confirm btn-whatsapp" id="sendConfirm">
+                            <span class="wa-icon">&#9742;</span>
+                            Confirmar por WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-ornament">&#10022; &#10022; &#10022;</div>
+            <p>Los esperamos con mucho cariño</p>
+            <p class="footer-names">Rigoberto & Alondra</p>
+            <p class="footer-date">30 . 05 . 2026</p>
+        </footer>
+
+        <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+            <span class="music-icon">&#9835;</span>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
