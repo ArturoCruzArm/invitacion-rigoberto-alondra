@@ -143,7 +143,6 @@ function buildMessage() {
 document.getElementById('sendConfirm').addEventListener('click', () => {
     const msg = buildMessage();
     if (msg) {
-        // Number placeholder - update with actual contact number
-        window.open(`https://wa.me/52?text=${msg}`, '_blank');
+        window.open(`https://wa.me/5214778968079?text=${msg}`, '_blank');
     }
 });
