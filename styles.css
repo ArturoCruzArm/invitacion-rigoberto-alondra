@@ -838,7 +838,85 @@ body {
 
 @keyframes musicPulse { from { transform: scale(1); } to { transform: scale(1.2); } }
 
+/* Damas */
+.damas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dama-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,120,0.25);
+    border-radius: 12px;
+    padding: 1.1rem 0.8rem;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.dama-card:hover { box-shadow: 0 0 20px rgba(212,175,120,0.15); }
+
+.dama-card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
+}
+
+/* Votos Matrimoniales */
+.votos-section { background: linear-gradient(135deg, rgba(180,130,90,0.05) 0%, rgba(212,175,120,0.08) 100%); }
+
+.votos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.voto-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,120,0.25);
+    border-radius: 16px;
+    padding: 2rem 1.8rem;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.voto-card:hover { box-shadow: 0 0 30px rgba(212,175,120,0.15); }
+
+.voto-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+
+.voto-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+}
+
+.voto-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.82);
+    text-align: justify;
+    font-style: italic;
+}
+
 /* Responsive */
+@media (max-width: 600px) {
+    .votos-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .voto-card { padding: 1.5rem 1.2rem; }
+    .voto-text { font-size: 0.95rem; }
+    .damas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 600px) {
     .countdown { gap: 0.8rem; }
     .countdown-item { min-width: 65px; padding: 1rem 0.7rem; }
