@@ -1045,14 +1045,17 @@ body {
 .voto-modal-scroll::-webkit-scrollbar-track { background: transparent; }
 .voto-modal-scroll::-webkit-scrollbar-thumb { background: rgba(212,175,120,0.3); border-radius: 4px; }
 
-.voto-modal-text {
+.voto-modal-text p {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.05rem;
     line-height: 1.95;
     color: rgba(255,255,255,0.83);
     font-style: italic;
     text-align: justify;
+    margin: 0 0 1.2rem;
 }
+
+.voto-modal-text p:last-child { margin-bottom: 0; }
 
 /* Responsive */
 @media (max-width: 600px) {
