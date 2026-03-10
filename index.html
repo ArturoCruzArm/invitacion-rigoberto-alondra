@@ -237,18 +237,6 @@
             </div>
         </section>
 
-        <!-- Modal Votos -->
-        <div class="voto-modal" id="votoModal" aria-hidden="true">
-            <div class="voto-modal-overlay" id="votoOverlay"></div>
-            <div class="voto-modal-box" role="dialog" aria-modal="true">
-                <button class="voto-modal-close" id="votoClose" aria-label="Cerrar">&#10005;</button>
-                <div class="voto-modal-icon">&#128141;</div>
-                <h3 class="voto-modal-name" id="votoModalName"></h3>
-                <div class="voto-modal-scroll">
-                    <div class="voto-modal-text" id="votoModalText"></div>
-                </div>
-            </div>
-        </div>
 
         <!-- Dress Code -->
         <section class="section dresscode-section" id="dresscode">
@@ -313,6 +301,19 @@
         <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
             <span class="music-icon">&#9835;</span>
         </button>
+    </div>
+
+    <!-- Modal Votos (fuera de main-content para que position:fixed funcione) -->
+    <div class="voto-modal" id="votoModal" aria-hidden="true">
+        <div class="voto-modal-overlay" id="votoOverlay"></div>
+        <div class="voto-modal-box" role="dialog" aria-modal="true">
+            <button class="voto-modal-close" id="votoClose" aria-label="Cerrar">&#10005;</button>
+            <div class="voto-modal-icon">&#128141;</div>
+            <h3 class="voto-modal-name" id="votoModalName"></h3>
+            <div class="voto-modal-scroll">
+                <div class="voto-modal-text" id="votoModalText"></div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
