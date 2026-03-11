@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logística - Boda Rigoberto &amp; Alondra | Foro 7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #0a0515 100%);
+            color: #333; padding: 2rem; min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px; margin: 0 auto;
+            background: white; border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a0a2e 0%, #0a0515 100%);
+            color: white; padding: 3rem 2rem; text-align: center;
+            border-bottom: 3px solid #D4AF37;
+        }
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem; margin-bottom: 0.5rem; color: #D4AF37;
+        }
+        .header p { font-size: 1rem; opacity: 0.8; }
+
+        .nav-links {
+            display: flex; justify-content: center;
+            gap: 15px; margin: 20px 0; flex-wrap: wrap;
+        }
+        .nav-links a {
+            display: inline-block;
+            background: rgba(212,175,55,0.15);
+            border: 1px solid rgba(212,175,55,0.4);
+            color: #D4AF37; padding: 10px 25px; border-radius: 25px;
+            text-decoration: none; transition: all 0.3s; font-weight: 600;
+        }
+        .nav-links a:hover { background: rgba(212,175,55,0.25); transform: translateY(-2px); }
+
+        .content { padding: 3rem 2rem; }
+
+        .section { margin-bottom: 3rem; }
+        .section-title {
+            font-size: 1.6rem; color: #1a0a2e;
+            margin-bottom: 1.5rem; padding-bottom: 0.5rem;
+            border-bottom: 3px solid #D4AF37;
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .info-card {
+            background: linear-gradient(135deg, #f5f0e4 0%, #ede5c8 100%);
+            padding: 2rem; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #D4AF37;
+        }
+        .info-card h3 { color: #1a0a2e; margin-bottom: 1rem; font-size: 1.2rem; font-family: 'Cinzel', serif; }
+        .info-card p { margin-bottom: 0.5rem; line-height: 1.6; }
+        .info-card strong { color: #a07d20; }
+
+        .checklist { list-style: none; }
+        .checklist li {
+            padding: 0.75rem; margin-bottom: 0.5rem;
+            background: #f8f9fa; border-left: 4px solid #D4AF37;
+            border-radius: 5px; display: flex; align-items: center; gap: 10px;
+        }
+        .checklist li:before { content: "[ ]"; font-size: 1rem; color: #a07d20; font-weight: bold; }
+        .checklist li.completed:before { content: "[X]"; color: #10b981; }
+
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline:before {
+            content: ""; position: absolute;
+            left: 0; top: 0; bottom: 0; width: 3px;
+            background: linear-gradient(180deg, #D4AF37 0%, #1a0a2e 100%);
+        }
+        .timeline-item { position: relative; margin-bottom: 2rem; padding-left: 2rem; }
+        .timeline-item:before {
+            content: ""; position: absolute;
+            left: -2.6rem; top: 0;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: white; border: 3px solid #D4AF37;
+        }
+        .timeline-item.completed:before { background: #10b981; border-color: #10b981; }
+        .timeline-date { font-weight: 600; color: #a07d20; margin-bottom: 0.5rem; font-family: 'Cinzel', serif; }
+
+        .status-badge {
+            display: inline-block; padding: 0.25rem 1rem;
+            border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-left: 0.5rem;
+        }
+        .status-completed { background: #d1fae5; color: #065f46; }
+        .status-pending   { background: #fef3c7; color: #92400e; }
+        .status-urgent    { background: #fee2e2; color: #991b1b; }
+
+        .contact-box {
+            background: linear-gradient(135deg, #1a0a2e 0%, #0a0515 100%);
+            color: white; padding: 2rem; border-radius: 15px; text-align: center;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        .contact-box h3 { margin-bottom: 1rem; color: #D4AF37; font-family: 'Cinzel', serif; }
+        .contact-box a { color: #D4AF37; text-decoration: none; }
+
+        .protocol-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .protocol-table th, .protocol-table td {
+            border: 1px solid #e5e7eb; padding: 0.75rem; text-align: left;
+        }
+        .protocol-table th {
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b69 100%);
+            color: #D4AF37; font-family: 'Cinzel', serif;
+        }
+        .protocol-table tr:nth-child(even) { background-color: #f5f0e4; }
+
+        .padrinos-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .padrinos-table th, .padrinos-table td {
+            border: 1px solid #e5e7eb; padding: 0.75rem; text-align: left;
+        }
+        .padrinos-table th {
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b69 100%);
+            color: #D4AF37; font-family: 'Cinzel', serif;
+        }
+        .padrinos-table tr:nth-child(even) { background-color: #f5f0e4; }
+
+        .damas-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px; margin-top: 10px;
+        }
+        .dama-item {
+            background: linear-gradient(135deg, #f5f0e4, #ede5c8);
+            border: 1px solid rgba(212,175,55,0.35);
+            border-radius: 10px; padding: 12px 8px;
+            text-align: center; font-size: 0.88rem; color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.7rem; }
+            .protocol-table { font-size: 0.9rem; }
+            body { padding: 1rem; }
+            .damas-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Logística del Evento</h1>
+            <p>Boda de Rigoberto Romero Romo &amp; Alondra Guadalupe Dávila Frausto</p>
+            <p>Sábado 30 de Mayo, 2026 · León, Guanajuato</p>
+            <div class="nav-links">
+                <a href="index.html">Invitación</a>
+                <a href="contrato.html">Contrato</a>
+                <a href="logistica.html">Logística</a>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- Información General -->
+            <section class="section">
+                <h2 class="section-title">✦ Información General del Evento</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Los Novios</h3>
+                        <p><strong>Novio:</strong> Rigoberto Romero Romo</p>
+                        <p><strong>Novia:</strong> Alondra Guadalupe Dávila Frausto</p>
+                        <p><strong>Fecha:</strong> Sábado 30 de Mayo, 2026</p>
+                        <p><strong>Lugar:</strong> León, Guanajuato</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Padres</h3>
+                        <p><strong>Padres del novio:</strong></p>
+                        <p>Rigoberto Romero Rodríguez &amp; Eva Elizabeth Romo Ramírez</p>
+                        <p style="margin-top:8px;"><strong>Padres de la novia:</strong></p>
+                        <p>José David Dávila García &amp; María Ancelina Frausto López</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Contacto / Paquete</h3>
+                        <p><strong>Contratante:</strong> Eva Elizabeth Romo Ramírez</p>
+                        <p><strong>Tel/WhatsApp:</strong> 477 896 8079</p>
+                        <p style="margin-top:8px;"><strong>Total:</strong> $8,100.00 MXN</p>
+                        <p><strong>Anticipo:</strong> $1,000.00 MXN ✔</p>
+                        <p><strong>Saldo:</strong> $7,100.00 MXN</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lugares -->
+            <section class="section">
+                <h2 class="section-title">✦ Lugares del Evento</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Ceremonia Religiosa</h3>
+                        <p><strong>Templo:</strong> Templo Expiatorio</p>
+                        <p><strong>Ciudad:</strong> León, Guanajuato</p>
+                        <p><strong>Hora:</strong> 1:00 PM</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Recepción (Fiesta)</h3>
+                        <p><strong>Dirección:</strong> Privada Atenco 104</p>
+                        <p><strong>Colonia:</strong> Cortijos de la Gloria</p>
+                        <p><strong>Ciudad:</strong> León, Gto.</p>
+                        <p><strong>Hora:</strong> Por confirmar (después de la misa)</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Cobertura</h3>
+                        <p><strong>Sesión de noviazgo:</strong> Por coordinar</p>
+                        <p><strong>Boda civil:</strong> Por coordinar</p>
+                        <p><strong>Ceremonia religiosa:</strong> Templo Expiatorio</p>
+                        <p><strong>Recepción:</strong> Privada Atenco 104</p>
+                        <p><strong>Dron:</strong> Incluido</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Protocolo -->
+            <section class="section">
+                <h2 class="section-title">✦ Protocolo del Evento (Minuto a Minuto)</h2>
+                <table class="protocol-table">
+                    <thead>
+                        <tr>
+                            <th>Hora</th>
+                            <th>Actividad</th>
+                            <th>Lugar / Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Por confirmar</td><td>Getting ready / preparativos</td><td>Por confirmar</td></tr>
+                        <tr><td>1:00 PM</td><td>Ceremonia Religiosa</td><td>Templo Expiatorio, León</td></tr>
+                        <tr><td>Por confirmar</td><td>Sesión de fotos exterior</td><td>Post-ceremonia</td></tr>
+                        <tr><td>Por confirmar</td><td>Llegada al salón</td><td>Privada Atenco 104</td></tr>
+                        <tr><td>Por confirmar</td><td>Recibimiento / cóctel</td><td>Salón de recepción</td></tr>
+                        <tr><td>Por confirmar</td><td>Entrada de los novios</td><td>Salón de recepción</td></tr>
+                        <tr><td>Por confirmar</td><td>Comida / banquete</td><td>Salón de recepción</td></tr>
+                        <tr><td>Por confirmar</td><td>Primer baile de los novios</td><td>Vals</td></tr>
+                        <tr><td>Por confirmar</td><td>Ramo / programa musical</td><td>Confirmar: mariachi, DJ, banda</td></tr>
+                        <tr><td>Por confirmar</td><td>Pastel</td><td>Salón de recepción</td></tr>
+                        <tr><td>Por confirmar</td><td>Cierre del evento</td><td>Por confirmar</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Padrinos -->
+            <section class="section">
+                <h2 class="section-title">✦ Padrinos</h2>
+                <table class="padrinos-table">
+                    <thead>
+                        <tr><th>Tipo</th><th>Nombre(s)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Velación</td><td>Diana Ramírez &amp; Carlos López</td></tr>
+                        <tr><td>Lazo</td><td>Ángela Hernández &amp; Osvaldo Villa</td></tr>
+                        <tr><td>Anillos</td><td>Fernando Dávila</td></tr>
+                        <tr><td>Arras</td><td>Janet Padilla &amp; Miguel Rodríguez</td></tr>
+                        <tr><td>Biblia y Rosario</td><td>Cecilia Romo</td></tr>
+                        <tr><td>Cristo</td><td>Marisol Romo</td></tr>
+                        <tr><td>Cirio</td><td>Esperanza Ramírez</td></tr>
+                        <tr><td>Cojines</td><td>Edith Ramos</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Damas -->
+            <section class="section">
+                <h2 class="section-title">✦ Damas (8)</h2>
+                <div class="damas-grid">
+                    <div class="dama-item">Edith Ibáñez</div>
+                    <div class="dama-item">Janet Padilla</div>
+                    <div class="dama-item">Adilene Fierro</div>
+                    <div class="dama-item">Dulce Ramírez</div>
+                    <div class="dama-item">Ivonne García</div>
+                    <div class="dama-item">Marisol Romo</div>
+                    <div class="dama-item">Linneth Hernández</div>
+                    <div class="dama-item">Ángela Hernández</div>
+                </div>
+            </section>
+
+            <!-- Cronología -->
+            <section class="section">
+                <h2 class="section-title">✦ Cronología del Proyecto</h2>
+                <div class="timeline">
+                    <div class="timeline-item completed">
+                        <p class="timeline-date">Febrero 2026 <span class="status-badge status-completed">Completado</span></p>
+                        <p>Primer contacto, cotización y apartado de la fecha</p>
+                    </div>
+                    <div class="timeline-item completed">
+                        <p class="timeline-date">Febrero 2026 <span class="status-badge status-completed">Completado</span></p>
+                        <p>Recepción de anticipo: $1,000.00 MXN</p>
+                    </div>
+                    <div class="timeline-item completed">
+                        <p class="timeline-date">Marzo 2026 <span class="status-badge status-completed">Completado</span></p>
+                        <p>Invitación web publicada — rigoberto-alondra.invitados.org</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">Por coordinar <span class="status-badge status-pending">Pendiente</span></p>
+                        <p>Sesión de noviazgo (engagement)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">Por coordinar <span class="status-badge status-pending">Pendiente</span></p>
+                        <p>Cobertura boda civil</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">23 de Mayo, 2026 <span class="status-badge status-urgent">Importante</span></p>
+                        <p>Fecha límite de pago del saldo restante: $7,100.00 MXN</p>
+                        <p style="font-size:0.9em;color:#666;margin-top:0.5rem;">7 días antes del evento</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">30 de Mayo, 2026 <span class="status-badge status-pending">Pendiente</span></p>
+                        <p><strong>DÍA DEL EVENTO</strong></p>
+                        <p>Ceremonia — Templo Expiatorio · 1:00 PM</p>
+                        <p>Recepción — Privada Atenco 104, Cortijos de la Gloria</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">Julio–Agosto 2026 <span class="status-badge status-pending">Pendiente</span></p>
+                        <p>Entrega de material final (30–45 días después del evento)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Checklist -->
+            <section class="section">
+                <h2 class="section-title">✦ Checklist Foro 7 — Antes del Evento</h2>
+
+                <h3 style="color:#a07d20;margin:1.5rem 0 1rem;font-family:'Cinzel',serif;">Día del Evento</h3>
+                <ul class="checklist">
+                    <li>Llegar 30 minutos antes a la ceremonia (Templo Expiatorio, 1:00 PM)</li>
+                    <li>Confirmar hora exacta de llegada al salón (Privada Atenco 104)</li>
+                    <li>Confirmar recepción del saldo pendiente ($7,100.00 MXN)</li>
+                    <li>Verificar equipo completo (cámaras, lentes, audio, dron)</li>
+                    <li>Cargar todas las baterías (foto, video, dron)</li>
+                    <li>Llevar baterías de repuesto</li>
+                    <li>Llevar tarjetas de memoria formateadas</li>
+                    <li>Verificar iluminación (flashes foto, luces video)</li>
+                    <li>Verificar micrófono para votos matrimoniales</li>
+                    <li>Verificar condición del dron y espacio para vuelo</li>
+                </ul>
+
+                <h3 style="color:#a07d20;margin:1.5rem 0 1rem;font-family:'Cinzel',serif;">Post-Evento</h3>
+                <ul class="checklist">
+                    <li>Respaldar todo el material (fotos, video, dron)</li>
+                    <li>Editar fotografías</li>
+                    <li>Editar video (musicalizar y titular)</li>
+                    <li>Editar video de votos matrimoniales</li>
+                    <li>Editar tomas de dron</li>
+                    <li>Entregar material digital completo al cliente</li>
+                </ul>
+            </section>
+
+            <!-- Info Pendiente -->
+            <section class="section">
+                <h2 class="section-title">✦ Información Pendiente</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Confirmado ✔</h3>
+                        <ul style="list-style:none;padding:0;">
+                            <li style="margin-bottom:0.5rem;">[X] Novio: Rigoberto Romero Romo</li>
+                            <li style="margin-bottom:0.5rem;">[X] Novia: Alondra Guadalupe Dávila Frausto</li>
+                            <li style="margin-bottom:0.5rem;">[X] Fecha: 30 de Mayo de 2026</li>
+                            <li style="margin-bottom:0.5rem;">[X] Ceremonia: Templo Expiatorio · 1:00 PM</li>
+                            <li style="margin-bottom:0.5rem;">[X] Recepción: Privada Atenco 104</li>
+                            <li style="margin-bottom:0.5rem;">[X] Paquete: $8,100 (foto + video + dron)</li>
+                            <li style="margin-bottom:0.5rem;">[X] Anticipo: $1,000 — Febrero 2026</li>
+                            <li style="margin-bottom:0.5rem;">[X] Padrinos: 8 tipos confirmados</li>
+                            <li style="margin-bottom:0.5rem;">[X] Damas: 8 confirmadas</li>
+                            <li style="margin-bottom:0.5rem;">[X] Invitación web publicada</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>Por Confirmar</h3>
+                        <ul style="list-style:none;padding:0;">
+                            <li style="margin-bottom:0.5rem;">[ ] Hora de llegada al salón</li>
+                            <li style="margin-bottom:0.5rem;">[ ] Hora de getting ready</li>
+                            <li style="margin-bottom:0.5rem;">[ ] Programa musical (mariachi / DJ / banda)</li>
+                            <li style="margin-bottom:0.5rem;">[ ] Minuto a minuto de la fiesta</li>
+                            <li style="margin-bottom:0.5rem;">[ ] Fecha y lugar sesión de noviazgo</li>
+                            <li style="margin-bottom:0.5rem;">[ ] Fecha y lugar boda civil</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>Notas Importantes</h3>
+                        <ul style="list-style:none;padding:0;">
+                            <li style="margin-bottom:0.5rem;">Invitación: rigoberto-alondra.invitados.org</li>
+                            <li style="margin-bottom:0.5rem;">Fecha límite pago saldo: 23 de mayo 2026</li>
+                            <li style="margin-bottom:0.5rem;">Incluye dron — verificar permisos de vuelo en el Templo Expiatorio</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Protección de equipo -->
+            <section class="section">
+                <h2 class="section-title" style="color:#991b1b;border-color:#991b1b;">⚠ Protección del Equipo Fotográfico</h2>
+                <div style="background:#fee2e2;border-left:5px solid #991b1b;border-radius:12px;padding:1.5rem 2rem;">
+                    <p style="font-weight:700;color:#991b1b;margin-bottom:1rem;font-size:1.05rem;">
+                        Los siguientes elementos pueden dañar gravemente las cámaras, lentes, equipo de video y el dron:
+                    </p>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:1.2rem;">
+                        <div>
+                            <p style="font-weight:600;margin-bottom:0.5rem;color:#7f1d1d;">🚫 Elementos Prohibidos Sin Aviso Previo</p>
+                            <ul style="list-style:none;padding:0;">
+                                <li style="margin-bottom:0.35rem;">❌ Espuma de fiesta en aerosol</li>
+                                <li style="margin-bottom:0.35rem;">❌ Confeti húmedo o mojado</li>
+                                <li style="margin-bottom:0.35rem;">❌ Brillo / glitter suelto</li>
+                                <li style="margin-bottom:0.35rem;">❌ Polvos de colores</li>
+                                <li style="margin-bottom:0.35rem;">❌ Arroz, maíz u otros granos</li>
+                                <li style="margin-bottom:0.35rem;">❌ Líquidos (agua, vino, etc.)</li>
+                                <li style="margin-bottom:0.35rem;">❌ Petardos / cohetones cerca del equipo</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p style="font-weight:600;margin-bottom:0.5rem;color:#7f1d1d;">✅ Protocolo a seguir</p>
+                            <ul style="list-style:none;padding:0;">
+                                <li style="margin-bottom:0.35rem;">✔ Avisar al fotógrafo <strong>antes</strong> de cualquier actividad con estos elementos</li>
+                                <li style="margin-bottom:0.35rem;">✔ El fotógrafo se posicionará en un lugar seguro</li>
+                                <li style="margin-bottom:0.35rem;">✔ Se cubrirá el equipo o se retirará temporalmente</li>
+                                <li style="margin-bottom:0.35rem;">✔ Se reanudará la cobertura una vez que el área esté despejada</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p style="font-size:0.88rem;color:#7f1d1d;border-top:1px solid #fca5a5;padding-top:0.8rem;">
+                        <strong>Nota:</strong> El CONTRATANTE asume la responsabilidad por daños al equipo causados por uso de estos elementos sin previo aviso, conforme a la cláusula 6 del contrato.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Resumen Financiero -->
+            <section class="section">
+                <h2 class="section-title">✦ Resumen Financiero</h2>
+                <div class="info-card">
+                    <table style="width:100%;">
+                        <tr><td><strong>Paquete foto + video:</strong></td><td style="text-align:right;">$7,500.00 MXN</td></tr>
+                        <tr><td><strong>Dron:</strong></td><td style="text-align:right;">$600.00 MXN</td></tr>
+                        <tr><td><strong>Total contratado:</strong></td><td style="text-align:right;font-weight:600;">$8,100.00 MXN</td></tr>
+                        <tr><td><strong>Anticipo recibido:</strong></td><td style="text-align:right;color:#10b981;">− $1,000.00 MXN</td></tr>
+                        <tr style="border-top:2px solid #D4AF37;">
+                            <td><strong>Saldo pendiente:</strong></td>
+                            <td style="text-align:right;font-weight:bold;color:#a07d20;">$7,100.00 MXN</td>
+                        </tr>
+                        <tr><td><strong>Fecha límite de pago:</strong></td><td style="text-align:right;">23 de Mayo, 2026</td></tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Contacto -->
+            <section class="section">
+                <div class="contact-box">
+                    <h3>Información de Contacto</h3>
+                    <p style="margin-bottom:1rem;">
+                        <strong>Contratante:</strong> Eva Elizabeth Romo Ramírez<br>
+                        <strong>Tel/WhatsApp:</strong> <a href="https://wa.me/524778968079">477 896 8079</a>
+                    </p>
+                    <hr style="border:1px solid rgba(212,175,55,0.25);margin:1.5rem 0;">
+                    <p>
+                        <strong style="color:#D4AF37;">Producciones Foro 7</strong><br>
+                        <strong>WhatsApp:</strong> <a href="https://wa.me/5214779203776">477-920-3776</a><br>
+                        <strong>Email:</strong> <a href="mailto:foro7producciones@gmail.com">foro7producciones@gmail.com</a><br>
+                        <strong>Ubicación:</strong> Padilla 112, Cumbres de Arbide, León, Gto.
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</body>
+</html>

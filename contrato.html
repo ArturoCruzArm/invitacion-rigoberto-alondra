@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrato - Boda Rigoberto &amp; Alondra | Foro 7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0ece4;
+            color: #333; line-height: 1.6;
+        }
+
+        .print-header {
+            background: linear-gradient(135deg, #1a0a2e 0%, #0a0515 100%);
+            padding: 1rem; text-align: center;
+        }
+        .print-button {
+            background: linear-gradient(135deg, #D4AF37, #F5E6A3);
+            color: #1a0a2e; padding: 0.75rem 2rem;
+            border: none; border-radius: 0.5rem;
+            font-size: 1.1rem; font-weight: 700;
+            cursor: pointer; transition: all 0.3s;
+            font-family: 'Cinzel', serif; letter-spacing: 0.05em;
+        }
+        .print-button:hover { opacity: 0.88; transform: translateY(-1px); }
+        .print-info { color: rgba(212,175,55,0.7); margin-top: 0.5rem; font-size: 0.85rem; }
+
+        .nav-links {
+            display: flex; justify-content: center;
+            gap: 15px; margin: 20px 0; flex-wrap: wrap;
+        }
+        .nav-links a {
+            display: inline-block;
+            background: rgba(212,175,55,0.15);
+            border: 1px solid rgba(212,175,55,0.4);
+            color: #D4AF37;
+            padding: 10px 25px; border-radius: 25px;
+            text-decoration: none; transition: all 0.3s;
+            font-size: 0.9em; font-weight: 600;
+        }
+        .nav-links a:hover {
+            background: rgba(212,175,55,0.25); transform: translateY(-2px);
+        }
+
+        .contract-container {
+            max-width: 1024px; margin: 0 auto;
+            background: white; padding: 3rem;
+        }
+        .contract-header { text-align: center; margin-bottom: 2rem; }
+        .contract-title {
+            font-size: 2.5rem; font-weight: bold;
+            margin-bottom: 0.5rem; color: #1a0a2e;
+            font-family: 'Cinzel', serif;
+        }
+        .contract-subtitle {
+            font-size: 1.15rem; font-weight: 600;
+            color: #374151; font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
+        }
+
+        .section { margin-bottom: 1.5rem; }
+        .section-title {
+            font-size: 1.1rem; font-weight: bold;
+            margin-bottom: 0.75rem; color: #1a0a2e;
+            font-family: 'Cinzel', serif;
+        }
+        .section-content { margin-left: 1.5rem; }
+        .section-content p { margin-bottom: 0.5rem; }
+        .section-content ul, .section-content ol {
+            margin-left: 2rem; margin-bottom: 0.75rem;
+        }
+        .section-content li { margin-bottom: 0.25rem; }
+
+        .highlight { font-weight: 600; color: #1a0a2e; }
+        .divider { border: none; border-top: 1px solid #d1d5db; margin: 1.5rem 0; }
+        .text-justify { text-align: justify; }
+
+        .package-details {
+            background: linear-gradient(135deg, #f5f0e4 0%, #ede5c8 100%);
+            padding: 1rem;
+            border-left: 4px solid #D4AF37;
+            margin: 1rem 0;
+        }
+        .price-breakdown {
+            background-color: #fef9ec;
+            padding: 1rem; border-radius: 0.375rem; margin: 1rem 0;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+
+        .signatures { margin-top: 4rem; }
+        .signature-section { margin-bottom: 3rem; }
+        .signature-title { font-weight: 600; margin-bottom: 2rem; font-family: 'Cinzel', serif; }
+
+        .footer {
+            background: linear-gradient(135deg, #1a0a2e 0%, #0a0515 100%);
+            color: rgba(255,255,255,0.7); text-align: center;
+            padding: 30px 20px; margin-top: 40px;
+        }
+        .footer p { margin: 8px 0; font-size: 1rem; }
+        .footer .company-name {
+            font-weight: 600; font-size: 1.2rem;
+            color: #D4AF37; font-family: 'Cinzel', serif;
+        }
+        .footer a { color: #D4AF37; text-decoration: none; }
+
+        @media print {
+            .print-header { display: none !important; }
+            body { margin: 0; padding: 0; background: white; }
+            .contract-container { padding: 2rem; box-shadow: none; }
+            @page { margin: 2cm; }
+            .section { break-inside: avoid; }
+        }
+        @media (max-width: 768px) {
+            .contract-container { padding: 1.5rem; }
+            .contract-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-header">
+        <div class="nav-links">
+            <a href="index.html">Invitación</a>
+            <a href="contrato.html">Contrato</a>
+            <a href="logistica.html">Logística</a>
+        </div>
+        <button class="print-button" onclick="window.print()">Descargar como PDF</button>
+        <p class="print-info">Haz clic y selecciona Guardar como PDF</p>
+    </div>
+
+    <div class="contract-container">
+        <div class="contract-header">
+            <h1 class="contract-title">FORO 7</h1>
+            <h2 class="contract-subtitle">CONTRATO DE SERVICIOS FOTOGRÁFICOS Y VIDEOGRÁFICOS</h2>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">DATOS DE LAS PARTES</h3>
+            <div class="section-content">
+                <p><span class="highlight">PRESTADOR DE SERVICIOS:</span></p>
+                <p style="margin-left:1.5rem;margin-bottom:0.75rem;">Foro 7 — Juan Arturo Cruz Armenta</p>
+                <p><span class="highlight">CONTRATANTE:</span></p>
+                <p style="margin-left:1.5rem;">Eva Elizabeth Romo Ramírez</p>
+                <p style="margin-left:1.5rem;">Tel/WhatsApp: 477 896 8079</p>
+                <p style="margin-left:1.5rem;font-size:0.9em;color:#666;">Madre del novio</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section">
+            <h3 class="section-title">I. OBJETO DEL CONTRATO</h3>
+            <div class="section-content">
+                <p class="text-justify">
+                    El PRESTADOR se compromete a proporcionar los servicios de fotografía y videografía profesionales para la Boda, conforme al siguiente detalle:
+                </p>
+                <div class="package-details">
+                    <p class="highlight">PAQUETE CONTRATADO: Fotografía + Video + Dron ($8,100)</p>
+                </div>
+                <p class="highlight" style="margin-top:1rem;margin-bottom:0.5rem;">El paquete incluye:</p>
+                <ul>
+                    <li>Cobertura fotográfica y de video — <strong>Ceremonia religiosa y recepción</strong></li>
+                    <li><strong>Tomas con Dron</strong></li>
+                    <li><strong>Sesión de noviazgo</strong> (engagement)</li>
+                    <li>Cobertura de <strong>boda civil</strong></li>
+                    <li>Grabación de <strong>votos matrimoniales</strong></li>
+                    <li>Fotografías editadas en alta resolución</li>
+                    <li>Video editado, musicalizado y titulado</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section">
+            <h3 class="section-title">II. DATOS DEL EVENTO</h3>
+            <div class="section-content">
+                <p><span class="highlight">Tipo de evento:</span> Boda</p>
+                <p><span class="highlight">Novios:</span> Rigoberto Romero Romo &amp; Alondra Guadalupe Dávila Frausto</p>
+                <p><span class="highlight">Fecha del evento:</span> Sábado 30 de Mayo de 2026</p>
+
+                <p style="margin-top:1rem;"><span class="highlight">Lugar de la Ceremonia:</span> Templo Expiatorio</p>
+                <p style="margin-left:1.5rem;">León, Guanajuato</p>
+                <p><span class="highlight">Hora de la Ceremonia:</span> 1:00 PM</p>
+
+                <p style="margin-top:1rem;"><span class="highlight">Lugar de la Recepción:</span> Privada Atenco 104</p>
+                <p style="margin-left:1.5rem;">Col. Cortijos de la Gloria, León, Gto.</p>
+                <p><span class="highlight">Hora de llegada al salón:</span> Por confirmar</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section">
+            <h3 class="section-title">III. CONDICIONES ECONÓMICAS</h3>
+            <div class="section-content">
+                <p class="highlight" style="margin-bottom:0.5rem;">Desglose del servicio:</p>
+                <div class="price-breakdown">
+                    <p>Paquete Fotografía y Video: $7,500.00 MXN</p>
+                    <p>Tomas con Dron: $600.00 MXN</p>
+                    <p style="font-weight:600;margin-top:6px;border-top:1px solid #e5c44a;padding-top:6px;">Total: $8,100.00 MXN</p>
+                </div>
+                <p><span class="highlight">Monto total del servicio:</span> $8,100.00 MXN (Ocho mil cien pesos 00/100 M.N.)</p>
+                <p><span class="highlight">Anticipo entregado:</span> $1,000.00 MXN</p>
+                <p><span class="highlight">Fecha de entrega del anticipo:</span> Febrero de 2026</p>
+                <p><span class="highlight">Forma de pago del anticipo:</span> ___________________</p>
+                <p style="margin-left:1.5rem;font-size:0.9em;color:#666;">Cuenta: 4152 3137 6890 8985</p>
+                <p style="margin-left:1.5rem;font-size:0.9em;color:#666;">Titular: Juan Arturo Cruz Armenta</p>
+                <p><span class="highlight">Saldo pendiente:</span> $7,100.00 MXN</p>
+                <p style="margin-top:0.5rem;"><span class="highlight">Fecha límite de liquidación:</span> 23 de Mayo de 2026</p>
+                <p style="font-style:italic;font-size:0.875rem;">(7 días antes del evento)</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section">
+            <h3 class="section-title">IV. FORMA DE ENTREGA</h3>
+            <div class="section-content">
+                <p class="highlight" style="margin-bottom:0.5rem;">Entrega Digital:</p>
+                <ul style="margin-bottom:0.75rem;">
+                    <li>Todo el material fotográfico y videográfico en formato digital</li>
+                    <li>Todas las fotos editadas en alta resolución</li>
+                    <li>Video completo editado, musicalizado y titulado</li>
+                </ul>
+                <p class="highlight" style="margin-bottom:0.5rem;">Tiempo estimado de entrega:</p>
+                <ul>
+                    <li>Material digital: 30–45 días naturales después del evento</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section">
+            <h3 class="section-title">V. OBLIGACIONES DEL PRESTADOR</h3>
+            <div class="section-content">
+                <ol>
+                    <li>Realizar la cobertura fotográfica y videográfica profesional del evento</li>
+                    <li>Realizar edición profesional del material fotográfico y videográfico</li>
+                    <li>Entregar el material digital en el plazo acordado</li>
+                    <li>Cumplir con todos los entregables detallados en el contrato</li>
+                </ol>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section">
+            <h3 class="section-title">VI. OBLIGACIONES DEL CONTRATANTE</h3>
+            <div class="section-content">
+                <ol>
+                    <li>Liquidar el saldo pendiente a más tardar el 23 de Mayo de 2026</li>
+                    <li>Facilitar el acceso al Templo Expiatorio y al salón de recepción</li>
+                    <li>Confirmar los horarios definitivos del evento con anticipación</li>
+                    <li>Proporcionar cualquier información adicional necesaria para el servicio</li>
+                    <li><strong>Notificar al PRESTADOR con anticipación</strong> si se utilizará espuma de fiesta, confeti húmedo, brillo/glitter, polvos de color, maíz, arroz u otros elementos que puedan dañar el equipo fotográfico. El CONTRATANTE asume responsabilidad por daños causados al equipo sin previo aviso.</li>
+                </ol>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section">
+            <h3 class="section-title">VII. CLÁUSULAS ADICIONALES</h3>
+            <div class="section-content">
+                <p class="text-justify" style="margin-bottom:0.5rem;">
+                    <span class="highlight">1. MODIFICACIONES:</span> Cualquier modificación al presente contrato deberá ser acordada por ambas partes por escrito.
+                </p>
+                <p class="text-justify" style="margin-bottom:0.5rem;">
+                    <span class="highlight">2. CANCELACIÓN:</span> En caso de cancelación por parte del CONTRATANTE, el anticipo entregado no será reembolsable.
+                </p>
+                <p class="text-justify" style="margin-bottom:0.5rem;">
+                    <span class="highlight">3. DERECHOS DE AUTOR:</span> El PRESTADOR conserva los derechos de autor del material creado, pero otorga al CONTRATANTE licencia de uso personal del mismo.
+                </p>
+                <p class="text-justify" style="margin-bottom:0.5rem;">
+                    <span class="highlight">4. CONTINGENCIAS:</span> En caso de enfermedad o emergencia del PRESTADOR, este se compromete a proporcionar un fotógrafo/videógrafo de reemplazo con capacidades similares.
+                </p>
+                <p class="text-justify" style="margin-bottom:0.5rem;">
+                    <span class="highlight">5. PERMISOS:</span> El CONTRATANTE se compromete a obtener los permisos necesarios de las locaciones para la realización de fotografía y video profesional.
+                </p>
+                <p class="text-justify" style="margin-bottom:0.5rem;">
+                    <span class="highlight">6. PROTECCIÓN DE EQUIPO:</span> Queda estrictamente prohibido arrojar directamente sobre el equipo fotográfico y videográfico cualquier sustancia o elemento que pueda dañarlo, incluyendo: espuma de fiesta, confeti húmedo, brillo/glitter, polvos de color, líquidos, maíz, arroz, o cualquier material abrasivo. El CONTRATANTE se compromete a informar al PRESTADOR de cualquier actividad con estos elementos.
+                </p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="section">
+            <h3 class="section-title">VIII. ACEPTACIÓN</h3>
+            <div class="section-content">
+                <p class="text-justify">
+                    Ambas partes manifiestan su conformidad con los términos establecidos en el presente contrato y lo firman en León, Guanajuato, a los ___ días del mes de __________ de 2026.
+                </p>
+            </div>
+        </div>
+
+        <div class="signatures">
+            <div class="signature-section">
+                <p class="signature-title">PRESTADOR DE SERVICIOS</p>
+                <div style="margin-top:3rem;border-top:2px solid #000;padding-top:0.5rem;max-width:300px;">
+                    <p style="font-weight:600;">Juan Arturo Cruz Armenta</p>
+                    <p>Foro 7</p>
+                </div>
+            </div>
+            <div class="signature-section">
+                <p class="signature-title">CONTRATANTE</p>
+                <div style="margin-top:3rem;border-top:2px solid #000;padding-top:0.5rem;max-width:300px;">
+                    <p style="font-weight:600;">Eva Elizabeth Romo Ramírez</p>
+                    <p>Tel: 477 896 8079</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="company-name">Producciones Foro 7</p>
+        <p>Fotografía, Video e Invitaciones Web</p>
+        <p>WhatsApp: <a href="https://wa.me/5214779203776">477-920-3776</a></p>
+        <p>Email: <a href="mailto:foro7producciones@gmail.com">foro7producciones@gmail.com</a></p>
+        <p>Padilla 112, Cumbres de Arbide, León, Gto.</p>
+    </div>
+</body>
+</html>
