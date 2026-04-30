@@ -263,15 +263,12 @@
                         <input type="text" id="guestName" placeholder="Tu nombre" required>
                     </div>
                     <div class="form-group">
-                        <label for="numGuests">Número de invitados</label>
-                        <select id="numGuests" required>
-                            <option value="">Selecciona</option>
-                            <option value="1">1 persona</option>
-                            <option value="2">2 personas</option>
-                            <option value="3">3 personas</option>
-                            <option value="4">4 personas</option>
-                            <option value="5">5 personas</option>
-                        </select>
+                        <label for="numGuests">Número de personas (incluyéndote)</label>
+                        <input type="number" id="numGuests" min="1" max="20" value="1" required>
+                    </div>
+                    <div class="form-group" id="nombresGroup" style="display:none;">
+                        <label>Nombres de tus acompañantes</label>
+                        <div id="nombresContainer"></div>
                     </div>
                     <div class="form-group">
                         <label for="attendance">¿Asistirás?</label>

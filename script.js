@@ -186,30 +186,71 @@ document.getElementById('musicToggle').addEventListener('click', () => {
     document.getElementById('musicToggle').classList.toggle('playing', isPlaying);
 });
 
-// ---- RSVP WhatsApp ----
-function buildMessage() {
+// ---- RSVP con acompanantes ----
+const SB_URL  = 'https://nzpujmlienzfetqcgsxz.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56cHVqbWxpZW56ZmV0cWNnc3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2ODYzMzYsImV4cCI6MjA5MDI2MjMzNn0.xl3lsb-KYj5tVLKTnzpbsdEGoV9ySnswH4eyRuyEH1s';
+const SB_H    = { 'apikey': SB_ANON, 'Authorization': 'Bearer ' + SB_ANON, 'Content-Type': 'application/json' };
+
+function buildNombreInputs(count) {
+    const container = document.getElementById('nombresContainer');
+    const group = document.getElementById('nombresGroup');
+    if (!container || !group) return;
+    container.innerHTML = '';
+    const numAcomp = Math.max(0, count - 1);
+    group.style.display = numAcomp > 0 ? 'block' : 'none';
+    for (let i = 0; i < numAcomp; i++) {
+        const inp = document.createElement('input');
+        inp.type = 'text';
+        inp.className = 'nombre-asistente';
+        inp.placeholder = 'Acompanante ' + (i + 1);
+        inp.style.cssText = 'width:100%;padding:10px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(255,255,255,0.08);color:inherit;font-size:.95rem;';
+        container.appendChild(inp);
+    }
+}
+
+const guestsInput = document.getElementById('numGuests');
+if (guestsInput) {
+    guestsInput.addEventListener('change', () => buildNombreInputs(parseInt(guestsInput.value)||1));
+    guestsInput.addEventListener('input', () => buildNombreInputs(parseInt(guestsInput.value)||1));
+    buildNombreInputs(parseInt(guestsInput.value)||1);
+}
+
+document.getElementById('sendConfirm').addEventListener('click', async () => {
     const name = document.getElementById('guestName').value.trim();
-    const num = document.getElementById('numGuests').value;
+    const num = parseInt(document.getElementById('numGuests').value) || 1;
     const att = document.getElementById('attendance').value;
     const msg = document.getElementById('message').value.trim();
+    const nombres = Array.from(document.querySelectorAll('.nombre-asistente')).map(inp => inp.value.trim()).filter(Boolean);
 
-    if (!name || !num || !att) {
+    if (!name || !att) {
         alert('Por favor llena todos los campos requeridos.');
-        return null;
+        return;
+    }
+
+    const asiste = att === 'si';
+    const token = new URLSearchParams(window.location.search).get('inv');
+    if (!token) {
+        try {
+            const evR = await fetch(`${SB_URL}/rest/v1/eventos?slug=eq.invitacion-rigoberto-alondra&select=id&limit=1`,{headers:SB_H});
+            const [ev] = await evR.json();
+            if (ev?.id) {
+                const r_inv = await fetch(`${SB_URL}/rest/v1/invitados`,{method:'POST',headers:{...SB_H,'Prefer':'return=representation'},
+                    body:JSON.stringify({evento_id:ev.id,nombre:name,pases_asignados:num,pases_confirmados:num,asiste,status:asiste?'confirmada':'declinada',mensaje:msg||null,fecha_confirmacion:new Date().toISOString()})});
+                const [inv] = await r_inv.json();
+                if (inv?.id && nombres.length) {
+                    await fetch(`${SB_URL}/rest/v1/acompanantes`,{method:'POST',headers:{...SB_H,'Prefer':'return=minimal'},
+                        body:JSON.stringify(nombres.map((n,i)=>({invitado_id:inv.id,nombre:n,orden:i})))});
+                }
+            }
+        } catch(e){}
     }
 
     let text = `*Boda Rigoberto & Alondra*\n\n`;
     text += `*Nombre:* ${name}\n`;
     text += `*Invitados:* ${num}\n`;
-    text += `*Asistencia:* ${att === 'si' ? 'Confirmo mi asistencia' : 'No podré asistir'}\n`;
+    text += `*Asistencia:* ${asiste ? 'Confirmo mi asistencia' : 'No podré asistir'}\n`;
+    if (nombres.length) text += `*Acompanantes:* ${nombres.join(', ')}\n`;
     if (msg) text += `*Mensaje:* ${msg}\n`;
 
-    return encodeURIComponent(text);
-}
-
-document.getElementById('sendConfirm').addEventListener('click', () => {
-    const msg = buildMessage();
-    if (msg) {
-        window.open(`https://wa.me/5214778968079?text=${msg}`, '_blank');
-    }
+    window.open(`https://wa.me/5214778968079?text=${encodeURIComponent(text)}`, '_blank');
 });
