@@ -12,7 +12,7 @@ let photoSelections = {};
 let currentPhotoIndex = null;
 let currentFilter = 'all';
 const PAGE_SIZE = 60;
-let visibleCount = PAGE_SIZE;
+let currentPage = 0;
 
 // ========================================
 // LOCAL STORAGE FUNCTIONS
@@ -115,6 +115,77 @@ function updateStats() {
 // ========================================
 // GALLERY FUNCTIONS
 // ========================================
+function getTotalPages() {
+    return Math.ceil(photos.length / PAGE_SIZE);
+}
+
+function getPagePhotos() {
+    const start = currentPage * PAGE_SIZE;
+    return { start, end: Math.min(start + PAGE_SIZE, photos.length) };
+}
+
+function goToPage(page) {
+    const total = getTotalPages();
+    if (page < 0) page = 0;
+    if (page >= total) page = total - 1;
+    currentPage = page;
+    renderGallery();
+    updateStats();
+    updateFilterButtons();
+    window.scrollTo({ top: document.querySelector('.gallery-section').offsetTop - 10, behavior: 'smooth' });
+}
+
+function renderPagination(container) {
+    const totalPages = getTotalPages();
+    if (totalPages <= 1) return;
+
+    const { start, end } = getPagePhotos();
+    const nav = document.createElement('div');
+    nav.className = 'pagination-nav';
+    nav.style.cssText = 'grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:16px 0;';
+
+    const btnStyle = 'border:none;padding:10px 18px;border-radius:25px;font-size:.95rem;font-weight:600;cursor:pointer;font-family:Lato,sans-serif;transition:all .2s;';
+
+    if (currentPage > 0) {
+        const prev = document.createElement('button');
+        prev.textContent = '← Anterior';
+        prev.style.cssText = btnStyle + 'background:#8b6f47;color:#fff;';
+        prev.addEventListener('click', () => goToPage(currentPage - 1));
+        nav.appendChild(prev);
+    }
+
+    const maxBtns = 7;
+    let pageStart = Math.max(0, currentPage - 3);
+    let pageEnd = Math.min(totalPages, pageStart + maxBtns);
+    if (pageEnd - pageStart < maxBtns) pageStart = Math.max(0, pageEnd - maxBtns);
+
+    for (let i = pageStart; i < pageEnd; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i + 1;
+        const isActive = i === currentPage;
+        btn.style.cssText = btnStyle + (isActive
+            ? 'background:#d4a373;color:#fff;transform:scale(1.1);'
+            : 'background:#eee;color:#333;');
+        if (!isActive) btn.addEventListener('click', () => goToPage(i));
+        nav.appendChild(btn);
+    }
+
+    if (currentPage < totalPages - 1) {
+        const next = document.createElement('button');
+        next.textContent = 'Siguiente →';
+        next.style.cssText = btnStyle + 'background:#8b6f47;color:#fff;';
+        next.addEventListener('click', () => goToPage(currentPage + 1));
+        nav.appendChild(next);
+    }
+
+    const info = document.createElement('div');
+    info.style.cssText = 'grid-column:1/-1;text-align:center;color:#888;font-size:.85rem;padding:4px 0;';
+    info.textContent = `Fotos ${start + 1}–${end} de ${photos.length}`;
+
+    container.appendChild(info);
+    container.appendChild(nav);
+}
+
 function renderGallery() {
     const grid = document.getElementById('photosGrid');
     grid.innerHTML = '';
@@ -124,9 +195,9 @@ function renderGallery() {
         return;
     }
 
-    const limit = Math.min(visibleCount, photos.length);
+    const { start, end } = getPagePhotos();
 
-    for (let index = 0; index < limit; index++) {
+    for (let index = start; index < end; index++) {
         const photo = photos[index];
         const selection = photoSelections[index] || {};
         const hasAny = selection.ampliacion || selection.impresion || selection.invitacion || selection.descartada;
@@ -177,21 +248,7 @@ function renderGallery() {
         grid.appendChild(card);
     }
 
-    if (limit < photos.length) {
-        const remaining = photos.length - limit;
-        const loadMoreBtn = document.createElement('button');
-        loadMoreBtn.className = 'btn btn-load-more';
-        loadMoreBtn.textContent = `Cargar más fotos (${remaining} restantes)`;
-        loadMoreBtn.style.cssText = 'grid-column:1/-1;margin:20px auto;background:#d4a373;color:#fff;border:none;padding:16px 40px;border-radius:50px;font-size:1.1rem;font-weight:600;cursor:pointer;font-family:Lato,sans-serif;';
-        loadMoreBtn.addEventListener('click', () => {
-            visibleCount += PAGE_SIZE;
-            renderGallery();
-            updateStats();
-            updateFilterButtons();
-        });
-        grid.appendChild(loadMoreBtn);
-    }
-
+    renderPagination(grid);
     applyFilter();
 }
 
