@@ -11,6 +11,8 @@ const LIMITES = {
 let photoSelections = {};
 let currentPhotoIndex = null;
 let currentFilter = 'all';
+const PAGE_SIZE = 60;
+let visibleCount = PAGE_SIZE;
 
 // ========================================
 // LOCAL STORAGE FUNCTIONS
@@ -122,7 +124,10 @@ function renderGallery() {
         return;
     }
 
-    photos.forEach((photo, index) => {
+    const limit = Math.min(visibleCount, photos.length);
+
+    for (let index = 0; index < limit; index++) {
+        const photo = photos[index];
         const selection = photoSelections[index] || {};
         const hasAny = selection.ampliacion || selection.impresion || selection.invitacion || selection.descartada;
 
@@ -170,7 +175,22 @@ function renderGallery() {
 
         card.addEventListener('click', () => openModal(index));
         grid.appendChild(card);
-    });
+    }
+
+    if (limit < photos.length) {
+        const remaining = photos.length - limit;
+        const loadMoreBtn = document.createElement('button');
+        loadMoreBtn.className = 'btn btn-load-more';
+        loadMoreBtn.textContent = `Cargar más fotos (${remaining} restantes)`;
+        loadMoreBtn.style.cssText = 'grid-column:1/-1;margin:20px auto;background:#d4a373;color:#fff;border:none;padding:16px 40px;border-radius:50px;font-size:1.1rem;font-weight:600;cursor:pointer;font-family:Lato,sans-serif;';
+        loadMoreBtn.addEventListener('click', () => {
+            visibleCount += PAGE_SIZE;
+            renderGallery();
+            updateStats();
+            updateFilterButtons();
+        });
+        grid.appendChild(loadMoreBtn);
+    }
 
     applyFilter();
 }
