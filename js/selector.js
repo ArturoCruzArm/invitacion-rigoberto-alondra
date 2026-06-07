@@ -15,6 +15,11 @@ const PAGE_SIZE = 60;
 const PAGE_KEY = 'invitacion_rigoberto_alondra_page';
 let currentPage = parseInt(sessionStorage.getItem(PAGE_KEY) || '0', 10);
 
+// Thumbnail helper: convierte 'imagenes/foto.webp' -> 'imagenes/thumb/foto.webp'
+function getThumbPath(fullPath) {
+    return fullPath.replace('imagenes/', 'imagenes/thumb/');
+}
+
 // ========================================
 // LOCAL STORAGE FUNCTIONS
 // ========================================
@@ -250,7 +255,7 @@ function renderGallery() {
         const displayNumber = `Foto ${index + 1}`;
         const mediaHTML = `
             <div class="photo-image-container">
-                <img src="${photo}" alt="${displayNumber}" loading="lazy">
+                <img src="${getThumbPath(photo)}" alt="${displayNumber}" loading="lazy">
             </div>
         `;
 
