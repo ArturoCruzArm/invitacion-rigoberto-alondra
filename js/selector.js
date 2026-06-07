@@ -189,14 +189,14 @@ function renderPagination(container) {
 }
 
 function renderGallery() {
-    const section = document.querySelector('.gallery-section .container');
     const grid = document.getElementById('photosGrid');
-
-    // Limpiar paginación superior anterior
-    const oldTopPag = document.getElementById('paginationTop');
-    if (oldTopPag) oldTopPag.remove();
+    if (!grid) return;
+    const topPag = document.getElementById('paginationTop');
+    const bottomPag = document.getElementById('paginationBottom');
 
     grid.innerHTML = '';
+    if (topPag) topPag.innerHTML = '';
+    if (bottomPag) bottomPag.innerHTML = '';
 
     if (photos.length === 0) {
         grid.innerHTML = '<div class="no-photos-message">No hay fotos disponibles aún.</div>';
@@ -208,11 +208,8 @@ function renderGallery() {
     if (currentPage >= totalPages) currentPage = totalPages - 1;
     if (currentPage < 0) currentPage = 0;
 
-    // Paginación ARRIBA del grid
-    const topPag = document.createElement('div');
-    topPag.id = 'paginationTop';
-    renderPagination(topPag);
-    section.insertBefore(topPag, grid);
+    // Paginación arriba
+    if (topPag) renderPagination(topPag);
 
     const { start, end } = getPagePhotos();
 
@@ -267,8 +264,8 @@ function renderGallery() {
         grid.appendChild(card);
     }
 
-    // Paginación ABAJO del grid
-    renderPagination(grid);
+    // Paginación abajo
+    if (bottomPag) renderPagination(bottomPag);
     applyFilter();
 }
 
