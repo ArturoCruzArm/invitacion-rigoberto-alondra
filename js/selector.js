@@ -12,7 +12,8 @@ let photoSelections = {};
 let currentPhotoIndex = null;
 let currentFilter = 'all';
 const PAGE_SIZE = 60;
-let currentPage = 0;
+const PAGE_KEY = 'invitacion_rigoberto_alondra_page';
+let currentPage = parseInt(sessionStorage.getItem(PAGE_KEY) || '0', 10);
 
 // ========================================
 // LOCAL STORAGE FUNCTIONS
@@ -129,6 +130,7 @@ function goToPage(page) {
     if (page < 0) page = 0;
     if (page >= total) page = total - 1;
     currentPage = page;
+    try { sessionStorage.setItem(PAGE_KEY, String(currentPage)); } catch(e) {}
     renderGallery();
     updateStats();
     updateFilterButtons();
@@ -187,13 +189,30 @@ function renderPagination(container) {
 }
 
 function renderGallery() {
+    const section = document.querySelector('.gallery-section .container');
     const grid = document.getElementById('photosGrid');
+
+    // Limpiar paginación superior anterior
+    const oldTopPag = document.getElementById('paginationTop');
+    if (oldTopPag) oldTopPag.remove();
+
     grid.innerHTML = '';
 
     if (photos.length === 0) {
         grid.innerHTML = '<div class="no-photos-message">No hay fotos disponibles aún.</div>';
         return;
     }
+
+    // Validar página actual
+    const totalPages = getTotalPages();
+    if (currentPage >= totalPages) currentPage = totalPages - 1;
+    if (currentPage < 0) currentPage = 0;
+
+    // Paginación ARRIBA del grid
+    const topPag = document.createElement('div');
+    topPag.id = 'paginationTop';
+    renderPagination(topPag);
+    section.insertBefore(topPag, grid);
 
     const { start, end } = getPagePhotos();
 
@@ -248,6 +267,7 @@ function renderGallery() {
         grid.appendChild(card);
     }
 
+    // Paginación ABAJO del grid
     renderPagination(grid);
     applyFilter();
 }
