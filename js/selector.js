@@ -121,13 +121,33 @@ function updateStats() {
 // ========================================
 // GALLERY FUNCTIONS
 // ========================================
+function getFilteredIndices() {
+    const indices = [];
+    for (let i = 0; i < photos.length; i++) {
+        const sel = photoSelections[i] || {};
+        let show = false;
+        switch (currentFilter) {
+            case 'all': show = true; break;
+            case 'ampliacion': show = sel.ampliacion === true; break;
+            case 'impresion': show = sel.impresion === true; break;
+            case 'invitacion': show = sel.invitacion === true; break;
+            case 'descartada': show = sel.descartada === true; break;
+            case 'sin-clasificar': show = !sel.ampliacion && !sel.impresion && !sel.invitacion && !sel.descartada; break;
+        }
+        if (show) indices.push(i);
+    }
+    return indices;
+}
+
 function getTotalPages() {
-    return Math.ceil(photos.length / PAGE_SIZE);
+    return Math.ceil(getFilteredIndices().length / PAGE_SIZE);
 }
 
 function getPagePhotos() {
+    const filtered = getFilteredIndices();
     const start = currentPage * PAGE_SIZE;
-    return { start, end: Math.min(start + PAGE_SIZE, photos.length) };
+    const end = Math.min(start + PAGE_SIZE, filtered.length);
+    return { indices: filtered.slice(start, end), total: filtered.length, start, end };
 }
 
 function goToPage(page) {
@@ -146,7 +166,7 @@ function renderPagination(container) {
     const totalPages = getTotalPages();
     if (totalPages <= 1) return;
 
-    const { start, end } = getPagePhotos();
+    const pageData = getPagePhotos();
     const nav = document.createElement('div');
     nav.className = 'pagination-nav';
     nav.style.cssText = 'grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:16px 0;';
@@ -187,7 +207,7 @@ function renderPagination(container) {
 
     const info = document.createElement('div');
     info.style.cssText = 'grid-column:1/-1;text-align:center;color:#888;font-size:.85rem;padding:4px 0;';
-    info.textContent = `Fotos ${start + 1}–${end} de ${photos.length}`;
+    info.textContent = `Fotos ${pageData.start + 1}–${pageData.end} de ${pageData.total}`;
 
     container.appendChild(info);
     container.appendChild(nav);
@@ -203,22 +223,27 @@ function renderGallery() {
     if (topPag) topPag.innerHTML = '';
     if (bottomPag) bottomPag.innerHTML = '';
 
-    if (photos.length === 0) {
-        grid.innerHTML = '<div class="no-photos-message">No hay fotos disponibles aún.</div>';
+    const filtered = getFilteredIndices();
+    if (filtered.length === 0) {
+        grid.innerHTML = currentFilter === 'all'
+            ? '<div class="no-photos-message">No hay fotos disponibles aún.</div>'
+            : '<div class="no-photos-message">No hay fotos en esta categoría.</div>';
         return;
     }
 
     // Validar página actual
-    const totalPages = getTotalPages();
+    const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
     if (currentPage >= totalPages) currentPage = totalPages - 1;
     if (currentPage < 0) currentPage = 0;
 
     // Paginación arriba
     if (topPag) renderPagination(topPag);
 
-    const { start, end } = getPagePhotos();
+    const pageStart = currentPage * PAGE_SIZE;
+    const pageEnd = Math.min(pageStart + PAGE_SIZE, filtered.length);
 
-    for (let index = start; index < end; index++) {
+    for (let fi = pageStart; fi < pageEnd; fi++) {
+        const index = filtered[fi];
         const photo = photos[index];
         const selection = photoSelections[index] || {};
         const hasAny = selection.ampliacion || selection.impresion || selection.invitacion || selection.descartada;
@@ -271,7 +296,6 @@ function renderGallery() {
 
     // Paginación abajo
     if (bottomPag) renderPagination(bottomPag);
-    applyFilter();
 }
 
 // ========================================
@@ -312,7 +336,9 @@ function applyFilter() {
 
 function setFilter(filter) {
     currentFilter = filter;
-    applyFilter();
+    currentPage = 0;
+    renderGallery();
+    updateStats();
 
     document.querySelectorAll('.btn-filter').forEach(btn => {
         btn.classList.remove('active');
